@@ -1,10 +1,10 @@
 {
   "name": "react-color-tags",
   "version": "1.0.0",
-  "description": "area for tags with color specification",
+  "description": "UI to create colored tags",
   "author": "AmirjanyanIT",
   "license": "MIT",
-  "repository": "https://github.com/amirjanyanIT/react-color-tags",
+  "repository": "https://github.com/amirjanyanIT/react-colored-tags",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",

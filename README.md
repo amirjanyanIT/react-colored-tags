@@ -1,6 +1,6 @@
 # react-color-tags
 
-> area for tags with color specification
+> UI to create colored tags
 
 [![NPM](https://img.shields.io/npm/v/react-color-tags.svg)](https://www.npmjs.com/package/react-color-tags) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
