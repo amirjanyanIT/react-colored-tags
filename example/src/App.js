@@ -1,10 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { ExampleComponent } from 'react-color-tags'
-import 'react-color-tags/dist/index.css'
+import ColorTags from 'react-colored-tags'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  const [tags, setTags] = useState([
+    {
+      name: 'Tag 1',
+      color: 'custom_color_1'
+    },
+    {
+      name: 'Tag 2',
+      color: 'orange'
+    },
+    {
+      name: 'Tag 3',
+      color: 'custom_color_2'
+    }
+  ])
+  
+  return (
+    <ColorTags
+      tags={tags}
+      onChange={(tags) => setTags(tags)}
+      customColors={
+        [
+          {
+            name: 'custom_color_1',
+            color: 'rgb(87 196 218)'
+          },
+          {
+            name: 'custom_color_2',
+            color: 'rgb(85 109 251)'
+          }
+        ]
+      }
+      styles={{
+        container: {
+          maxWidth: '500px'
+        },
+        tag: {},
+        colorDegustation: {}
+      }}
+    />
+  )
 }
 
 export default App
