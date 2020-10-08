@@ -123,6 +123,7 @@ const ColorTags = ({
                       return tag
                     })
                   )
+                  setColorMenuOpen(false)
                 }}
               />
             ))}

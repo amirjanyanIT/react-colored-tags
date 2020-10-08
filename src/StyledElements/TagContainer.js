@@ -8,8 +8,7 @@ export default styled.div`
   padding: 7px;
   margin: 5px 10px 5px 0;
   color: #f0f0f0;
-  border-radius: 5px;
-  box-shadow: 0 0 10px 3px #cccccc;
+  border-radius: 2px;
   cursor: pointer;
   .delete-action {
     display: flex;
@@ -18,8 +17,10 @@ export default styled.div`
     margin-left: 10px;
     width: 15px;
     height: 15px;
-    border: 1px solid white;
-    font-size: 12px;
+    font-size: 13px;
     border-radius: 15px;
+    &:hover {
+      color: #ff8aa0;
+    }
   }
 `

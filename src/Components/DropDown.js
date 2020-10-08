@@ -26,7 +26,8 @@ const DropDown = ({ toggleTarget, children, open }) => {
   return (
     <DropDownContainer
       style={{
-        ...calcPosition()
+        ...calcPosition(),
+        width: `${toggleTarget.clientWidth - 14}px`
       }}
     >
       {children}
