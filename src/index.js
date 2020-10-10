@@ -133,7 +133,10 @@ const ColorTags = ({
 
                     return tag
                   })
-                  onTagChange(currentTag.tag)
+                  onTagChange({
+                    ...currentTag.tag,
+                    color: color.name
+                  })
                   onChange(modifiedTagsList)
                   setColorMenuOpen(false)
                 }}
