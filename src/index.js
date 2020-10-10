@@ -15,6 +15,9 @@ import Context from './Context'
 const ColorTags = ({
   tags = [],
   onChange = () => {},
+  onTagRemove = () => {},
+  onTagChange = () => {},
+  onTagCreate = () => {},
   customColors = [],
   styles = {}
 }) => {
@@ -60,6 +63,7 @@ const ColorTags = ({
         setShowInput(false)
         setNewTag({ ...newTag, name: '' })
         onChange([...tags, newTag])
+        onTagCreate(newTag)
       }
     }
   }
@@ -72,7 +76,14 @@ const ColorTags = ({
       }}
     >
       <Context.Provider
-        value={{ colors, tags, onChange, setColorMenuOpen, styles }}
+        value={{
+          colors,
+          tags,
+          onChange,
+          setColorMenuOpen,
+          styles,
+          onTagRemove
+        }}
       >
         <Container
           onClick={(e) => {
@@ -94,6 +105,7 @@ const ColorTags = ({
             <Input
               ref={inputRef}
               value={newTag.name}
+              style={styles.input || {}}
               onChange={({ target: { value } }) =>
                 setNewTag({ ...newTag, name: value })
               }
@@ -111,18 +123,18 @@ const ColorTags = ({
                   ...styles.colorDegustation
                 }}
                 onClick={() => {
-                  onChange(
-                    tags.map((tag, index) => {
-                      if (index === currentTag.index) {
-                        return {
-                          ...tag,
-                          color: color.name
-                        }
+                  const modifiedTagsList = tags.map((tag, index) => {
+                    if (index === currentTag.index) {
+                      return {
+                        ...tag,
+                        color: color.name
                       }
+                    }
 
-                      return tag
-                    })
-                  )
+                    return tag
+                  })
+                  onTagChange(currentTag.tag)
+                  onChange(modifiedTagsList)
                   setColorMenuOpen(false)
                 }}
               />

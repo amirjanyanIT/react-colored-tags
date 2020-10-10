@@ -4,14 +4,22 @@ import Context from '../Context'
 
 const Tag = ({ tag, tagIndex, onTagClick }) => {
   const tagRef = useRef()
-  const { tags, colors, onChange, setColorMenuOpen, styles } = useContext(
-    Context
-  )
+  const {
+    tags,
+    colors,
+    onChange,
+    setColorMenuOpen,
+    styles,
+    onTagRemove
+  } = useContext(Context)
   const { color, name } = tag
 
   const onDelete = () => {
     setColorMenuOpen(false)
-    onChange(tags.filter((_tag, cIndex) => cIndex !== tagIndex))
+    const removedTag = tags.find((_tag, cIndex) => tagIndex === cIndex)
+    const filteredList = tags.filter((_tag, cIndex) => cIndex !== tagIndex)
+    onChange(filteredList)
+    onTagRemove(removedTag)
   }
 
   const calcPosition = () => {

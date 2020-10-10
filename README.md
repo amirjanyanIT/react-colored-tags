@@ -37,6 +37,9 @@ const App = () => {
     <ColorTags
       tags={tags}
       onChange={(tags) => setTags(tags)}
+      onTagRemove={(tag) => { console.log('Removed Tag:', tag) }}
+      onTagChange={(tag) => { console.log('Changed Tag:', tag) }}
+      onTagCreate={(tag) => { console.log('Created Tag:', tag) }}
       customColors={
         [
           {
@@ -51,10 +54,12 @@ const App = () => {
       }
       styles={{
         container: {
-          maxWidth: '500px'
+          maxWidth: '500px',
+          display: 'inline-block'
         },
         tag: {},
-        colorDegustation: {}
+        colorDegustation: {},
+        input: {}
       }}
     />
   )
