@@ -27,7 +27,7 @@ const ColorTags = ({
   const [currentTag, setCurrentTag] = useState(null)
   const [colorMenuOpen, setColorMenuOpen] = useState(false)
 
-  const colors = [...customColors, ...defaultColors]
+  const colors = customColors.length ? customColors : defaultColors
 
   const [newTag, setNewTag] = useState({
     name: '',

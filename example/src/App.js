@@ -11,10 +11,6 @@ const App = () => {
       color: 'custom_color_1'
     },
     {
-      name: 'Tag 2',
-      color: 'orange'
-    },
-    {
       name: 'Tag 3',
       color: 'custom_color_2'
     }
