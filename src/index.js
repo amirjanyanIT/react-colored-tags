@@ -33,6 +33,7 @@ const AutoCompleteContainer = styled.div`
   border-right: 1px solid;
   border-bottom: 1px solid;
   border-color: #e0e0e0;
+  z-index: 1000000;
 `
 
 const ColorTags = ({
