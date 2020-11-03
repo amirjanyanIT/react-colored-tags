@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import styled from 'styled-components'
 import OutsideClickHandler from 'react-outside-click-handler'
 
 import defaultColors from './defaultColors'
@@ -11,6 +12,28 @@ import Tag from './Components/Tag'
 import DropDown from './Components/Dropdown'
 
 import Context from './Context'
+
+const InputContainer = styled.div`
+  display: inline-block;
+  position: relative;
+  min-width: 150px;
+`
+const AutoCompleteContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 100%;
+  max-height: 100px;
+  width: 96%;
+  background: white;
+  overflow: auto;
+  padding: 5px 3px;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  border-color: #e0e0e0;
+`
 
 const ColorTags = ({
   tags = [],
@@ -68,6 +91,19 @@ const ColorTags = ({
     }
   }
 
+  const autoCompleteTags = tags.filter((tag) =>
+    newTag.name
+      ? tag.name.toLowerCase().indexOf(newTag.name.toLowerCase()) !== -1
+      : false
+  )
+
+  const onAutoCompleteTagClick = (tag) => {
+    setShowInput(false)
+    setNewTag({ ...tag, name: '' })
+    onChange([...tags, tag])
+    onTagCreate(tag)
+  }
+
   return (
     <OutsideClickHandler
       onOutsideClick={() => {
@@ -102,14 +138,28 @@ const ColorTags = ({
             />
           ))}
           {showInput && (
-            <Input
-              ref={inputRef}
-              value={newTag.name}
-              style={styles.input || {}}
-              onChange={({ target: { value } }) =>
-                setNewTag({ ...newTag, name: value })
-              }
-            />
+            <InputContainer>
+              <Input
+                ref={inputRef}
+                value={newTag.name}
+                style={styles.input || {}}
+                onChange={({ target: { value } }) =>
+                  setNewTag({ ...newTag, name: value })
+                }
+              />
+              {autoCompleteTags.length ? (
+                <AutoCompleteContainer>
+                  {autoCompleteTags.map((tag, index) => (
+                    <Tag
+                      onTagClick={() => onAutoCompleteTagClick(tag)}
+                      tag={tag}
+                      key={index}
+                      removable={false}
+                    />
+                  ))}
+                </AutoCompleteContainer>
+              ) : null}
+            </InputContainer>
           )}
         </Container>
 

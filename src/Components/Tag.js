@@ -2,7 +2,7 @@ import React, { useContext, useRef } from 'react'
 import TagContainer from '../StyledElements/TagContainer'
 import Context from '../Context'
 
-const Tag = ({ tag, tagIndex, onTagClick }) => {
+const Tag = ({ tag, tagIndex, onTagClick, removable = true }) => {
   const tagRef = useRef()
   const {
     tags,
@@ -48,15 +48,17 @@ const Tag = ({ tag, tagIndex, onTagClick }) => {
       }}
     >
       {name}
-      <div
-        className='delete-action'
-        onClick={(e) => {
-          e.stopPropagation()
-          onDelete()
-        }}
-      >
-        X
-      </div>
+      {removable && (
+        <div
+          className='delete-action'
+          onClick={(e) => {
+            e.stopPropagation()
+            onDelete()
+          }}
+        >
+          X
+        </div>
+      )}
     </TagContainer>
   )
 }
