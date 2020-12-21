@@ -43,6 +43,8 @@ const ColorTags = ({
   onTagChange = () => {},
   onTagCreate = () => {},
   customColors = [],
+  isActive,
+  onActivityDisable,
   styles = {}
 }) => {
   const inputRef = useRef()
@@ -74,6 +76,19 @@ const ColorTags = ({
     setColorMenuOpen(false)
     setShowInput(true)
   }
+
+  useEffect(() => {
+    if (typeof isActive === 'boolean') {
+      if (isActive) {
+        setColorMenuOpen(false)
+        setShowInput(true)
+      } else {
+        showInput && setShowInput(false)
+        setColorMenuOpen(false)
+        onActivityDisable()
+      }
+    }
+  }, [isActive])
 
   useEffect(() => {
     if (showInput && inputRef.current) {
@@ -110,6 +125,7 @@ const ColorTags = ({
       onOutsideClick={() => {
         showInput && setShowInput(false)
         setColorMenuOpen(false)
+        onActivityDisable()
       }}
     >
       <Context.Provider
@@ -125,7 +141,9 @@ const ColorTags = ({
         <Container
           onClick={(e) => {
             e.stopPropagation()
-            renderInput()
+            if (isActive === undefined) {
+              renderInput()
+            }
           }}
           style={styles.container}
           onKeyUp={(e) => onKeyUp(e)}

@@ -15,10 +15,14 @@ const App = () => {
       color: 'custom_color_2'
     }
   ])
+  const [colorTagsIsActive, setColorTagsIsActive] = useState(false);
   
   return (
     <div className="container">
+      <button onClick={() => setColorTagsIsActive(true)}>outsideButton</button>
       <ColorTags
+        isActive={colorTagsIsActive}
+        onActivityDisable={() => setColorTagsIsActive(false)}
         tags={tags}
         onChange={(tags) => setTags(tags)}
         onTagRemove={(tag) => { console.log('Removed Tag:', tag) }}
